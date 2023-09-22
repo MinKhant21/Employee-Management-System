@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../features/userSlice'
-
+import { useNavigate} from 'react-router-dom';
 export default function Login() {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
+  const navigate = useNavigate();
   let user = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
@@ -13,8 +14,10 @@ export default function Login() {
       const data = {
         email,password
       }
-     
-      fetch("http://localhost:2000/api/login",{
+      postLogin(data)
+  }
+  const postLogin = (data) =>{
+    fetch("http://localhost:2000/api/login",{
         method:'POST',
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -33,14 +36,18 @@ export default function Login() {
       .then((res)=>{
         if(res.status == 200){
             dispatch(login(res))
-            console.log(user)
+            if(res.user.role == "admin"){
+              navigate('/admin-dashboard')
+            }else{
+              navigate('/employee-dashboard')
+            }
+            
         }
       })
       .catch((e)=>{
         console.error('Faild',e)
       })
   }
-
   return (
     <div className='center'>
         <div className='p-5' style={{borderRadius:'15px',boxShadow:" rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
