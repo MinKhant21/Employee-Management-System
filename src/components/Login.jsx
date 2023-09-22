@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, logout } from '../features/userSlice'
-import axios from 'axios'
+
 export default function Login() {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-  const user = useSelector((state) => state.user.user)
+  let user = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
   const HandleLogin = (e) =>{
       e.preventDefault();
       const data = {
         email,password
       }
-      dispatch(login(data))
-      // postLogin(user);
+     
       fetch("http://localhost:2000/api/login",{
         method:'POST',
         headers: {
@@ -21,8 +21,8 @@ export default function Login() {
           "Access-Control-Allow-Origin": "http://localhost:2000",
           "Access-Control-Allow-Methods":" GET, POST, PUT",
           "Access-Control-Allow-Headers": "Content-Type"
-       },
-       body:JSON.stringify(data)
+        },
+        body:JSON.stringify(data)
       })
       .then((res)=>{
         if(!res.ok){
@@ -31,15 +31,14 @@ export default function Login() {
         return res.json();
       })
       .then((res)=>{
-        console.log(res)
+        if(res.status == 200){
+            dispatch(login(res))
+            console.log(user)
+        }
       })
       .catch((e)=>{
         console.error('Faild',e)
       })
-      
-  }
-  const postLogin = (data) =>{
-      
   }
 
   return (
