@@ -9,7 +9,7 @@ exports.login = (req,res) => {
       let jwtSecretKey = process.env.JWT_SECRET_KEY
       let dataToken = {
         time: Date(),
-        userId: 12,
+        userId:data[0].id,
       }
       let token = jwt.sign(dataToken,jwtSecretKey)
       return res.json({

@@ -1,9 +1,7 @@
 import React from 'react'
-import background from '../../assets/background.jpeg'
 import { Link, Outlet,useLocation } from 'react-router-dom'
 import { SwitchTransition , CSSTransition } from "react-transition-group"
 export default function Layout() {
-  const location = useLocation();
 
   return (
     <>
