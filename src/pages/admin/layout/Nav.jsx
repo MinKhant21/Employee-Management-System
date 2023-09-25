@@ -1,5 +1,7 @@
 import React from 'react'
-
+import './Nav.css'
+import Photo from './default.jpeg'
+import {Link} from 'react-router-dom'
 export default function Nav() {
   return (
     <nav id="sidebar">
@@ -10,21 +12,17 @@ export default function Nav() {
       </button>
     </div>
     <div className="p-4 pt-5">
-      <h1><a href="index.html" className="logo">Splash</a></h1>
-      <ul className="list-unstyled components mb-5">
-        <li className="active">
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Home</a>
-          <ul className="collapse list-unstyled" id="homeSubmenu">
-            <li>
-                <a href="#">Home 1</a>
-            </li>
-            <li>
-                <a href="#">Home 2</a>
-            </li>
-            <li>
-                <a href="#">Home 3</a>
-            </li>
-          </ul>
+      <h1 style={{display: "flex",
+          justifyContent: "center",
+          alignItems: "center"}}>
+        <img src={Photo} style={{width:"70px",height:"70px",borderRadius:'10px'}} alt="" />
+      </h1>
+      <ul className="list-unstyled components mb-5"> 
+        <li>
+          <Link to="/admin-dashboard">DashBoard</Link>
+        </li>
+        <li>
+          <Link to="/admin-dashboard/employee">Employee</Link>
         </li>
         <li>
             <a href="#">About</a>

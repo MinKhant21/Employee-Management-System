@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../pages/Layout/Layout";
 import Login from "../components/Login";
 import AdminDashBoard from '../pages/admin/DashBoard'
-import AdminHome from '../pages/admin/Components/AdminHome'
+import AdminHome from '../pages/admin/pages/AdminHome'
+import EmployeeManagement from '../pages/admin/pages/EmployeeManagement'
 import EmployeeDashBoard from '../pages/employee/index'
 const router = createBrowserRouter([
     {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
             {
                 path:"",
                 element:<AdminHome/>
-            }
+            },
+            {
+                path:"employee",
+                element:<EmployeeManagement/>
+            },
         ]
     },
     {
