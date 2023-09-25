@@ -1,5 +1,6 @@
 import db from './db'
 import jwt from 'jsonwebtoken'
+
 exports.login = (req,res) => {
   let {email,password} = req.body
   let getUser = `SELECT id,name,email,role FROM USERS WHERE email = "${email}" AND  password = "${password}"`
@@ -8,7 +9,7 @@ exports.login = (req,res) => {
     if(data[0]!=undefined && data[0]){
       let jwtSecretKey = process.env.JWT_SECRET_KEY
       let dataToken = {
-        time: Date(),
+        role:data[0].role,
         userId:data[0].id,
       }
       let token = jwt.sign(dataToken,jwtSecretKey)

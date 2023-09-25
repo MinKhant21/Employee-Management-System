@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation from react-router-dom
 import NavBar from './layout/Nav';
-import { Link, Outlet } from 'react-router-dom';
+import {  Outlet } from 'react-router-dom';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 function DashBoard() {
@@ -12,7 +12,7 @@ function DashBoard() {
         <NavBar />
         <SwitchTransition>
           <CSSTransition timeout={200} classNames="fade" key={location.pathname}>
-            <div className="p-4 max-w-6xl ">
+            <div className="p-4 max-w-6xl " style={{width:"100%"}}>
               <Outlet />
             </div>
           </CSSTransition>
