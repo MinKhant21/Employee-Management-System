@@ -2,7 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import router from './router';
 import dotenv from 'dotenv'
-import {mongodbConnet} from './controller/db';
 
 const app = express();
 
@@ -17,9 +16,7 @@ app.use(router)
 /**-------Server Setup--------- */
   
 
-mongodbConnet(client=>{
     let PORT = process.env.PORT || 2000;
     let server = app.listen(PORT, () => {
         console.log(`Server running in : ${PORT}`)
     })
-})

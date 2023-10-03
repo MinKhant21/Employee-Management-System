@@ -5,6 +5,7 @@ import AdminDashBoard from '../pages/admin/DashBoard'
 import AdminHome from '../pages/admin/pages/AdminHome'
 import EmployeeManagement from '../pages/admin/pages/EmployeeManagement'
 import EmployeeDashBoard from '../pages/employee/index'
+import CreatEmployee from "../pages/admin/components/CreatEmployee";
 const router = createBrowserRouter([
     {
         path:'/',
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path:"employee",
                 element:<EmployeeManagement/>
             },
+            {
+                path:"create-employee",
+                element:<CreatEmployee/>
+            }
         ]
     },
     {

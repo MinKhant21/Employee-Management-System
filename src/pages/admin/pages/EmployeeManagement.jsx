@@ -7,13 +7,14 @@ import EmployeeList from '../components/EmployeeList.jsx';
 export default function EmployeeManagement() {
 
   const userToken = useSelector((state)=>state.user.token)
+  const url = useSelector((state)=>state.user.url)
   const [employees,setEmployee] = useState([])
   const [loading,setLoading] = useState(true)
-
-  const url = "http://localhost:2000/api/employee"
+  console.log(url)
+  // const url = "http://localhost:2000/api/employee/create"
 
   const getEmployeeList = useCallback(async()=>{
-    await fetch(url,{
+    await fetch(`${url}employee`,{
       headers:{
         'x-auth-token' : userToken
       }
@@ -34,7 +35,7 @@ export default function EmployeeManagement() {
     <div id="content" >
       <div className="container">
         <div className='' style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'20px'}}>
-            <Link className='btn btn-sm btn-success'>Add</Link>
+            <Link to={'/admin-dashboard/create-employee'} className='btn btn-sm btn-success'>Add</Link>
             <b><span>Employee Management</span></b>
         </div>
         <hr />

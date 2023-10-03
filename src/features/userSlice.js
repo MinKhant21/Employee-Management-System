@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
     const initialState = {
         user: "",
-        token:null
+        token:null,
+        url : "http://localhost:2000/api/"
+
     }
   
     export const userSlice = createSlice({

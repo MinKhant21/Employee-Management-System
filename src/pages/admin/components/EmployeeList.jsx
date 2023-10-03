@@ -1,4 +1,5 @@
 import React from 'react'
+import Employee from './Employee'
 
 export default function EmployeeList({employees}) {
   return (
@@ -12,17 +13,12 @@ export default function EmployeeList({employees}) {
             <th>Postion</th>
         </tr>
         {
-            employees.map((employee)=>{
-                return <tr>
-                    <td>{employee.id}</td>
-                    <td>{employee.name}</td>
-                    <td>23</td>
-                    <td>09123456789</td>
-                    <td>IT</td>
-                    <td>PHP</td>
-                </tr>
-            })
-        }
+        employees.map((employee)=>{
+            return(
+                <Employee employee={employee} />
+            )
+        })
+    }
     </table>
   )
 }
