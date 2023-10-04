@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import router from './router';
 import dotenv from 'dotenv'
-
+import multer from 'multer'
 const app = express();
 
 // Set up Global configuration access
@@ -12,7 +12,7 @@ app.use(cors({ origin: 'http://localhost:3000' }))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(router)
-
+app.use(multer().single('file'))
 /**-------Server Setup--------- */
   
 

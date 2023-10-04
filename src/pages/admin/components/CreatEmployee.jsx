@@ -10,14 +10,20 @@ export default function CreatEmployee() {
     const [password,setPassword] = useState('')
     const [phone,setPhone] = useState('')
     const [salary,setSalary] = useState('')
+    const [file,setFile] = useState([{}])
     const navigate = useNavigate();
 
     const HandleEmployeeForm = (e) =>{
         e.preventDefault();
         let data = {
-            name,email,password,phone,salary
+            name,email,password,phone,salary,file
         }
+        console.log(data)
         postEmployee(data)
+    }
+    const HandleFile = (e) =>{
+      setFile(e.target.files[0])
+      console.log(file)
     }
     const postEmployee = async(data) =>{
         // await fetch(`${url}employee/create`,{
@@ -80,6 +86,10 @@ export default function CreatEmployee() {
                 <div className="form-group">
                     <label htmlFor="password" className='form-label'>Password</label>
                     <input type="password" placeholder='Enter Your Password' onChange={(e)=>setPassword(e.target.value)} name='password' className='form-control' />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="file" className='form-label'>Choose File</label>
+                    <input type="file"  onChange={HandleFile} name='image' className='form-control' />
                 </div>
                 <div className="form-group">
                     <input type="submit"  className='form-control btn btn-md btn-primary' />
