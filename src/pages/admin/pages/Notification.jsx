@@ -1,15 +1,41 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import openSocket from 'socket.io-client'
 export default function Notification() {
     let [message,setMessage] = useState('')
+    const userToken = useSelector((state)=>state.user.token)
+    const user = useSelector((state)=>state.user.user)
+    let [noti,setNoti] = useState('')
     let baseUrl = useSelector(state=>state.user.baseUrl)
-    console.log(baseUrl)
+    console.log(user)
    const HandleChat = (e) =>{
     e.preventDefault();
-    let socket = openSocket(baseUrl)
-    socket.emit('noti',message)
+    
+    let data = {
+        user:user,
+        message: message
+    }
+    fetch(`${baseUrl}api/notification`,{
+        method:'POST',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            "Access-Control-Allow-Origin": "http://localhost:2000",
+            "Access-Control-Allow-Methods":" GET, POST, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            'x-auth-token' : userToken
+          },
+          body:JSON.stringify(data)
+    })
+    .then(data=>{
+        // if(data.status == '200'){
+        //     console.log('h')
+        //     let socket = openSocket(baseUrl)
+        //     socket.on('noti',(data) => {
+        //         setNoti(data.message)
+        //         console.log("hello world")
+        //     })
+        // }
+    })
    }
   return (
     <div id="content" >
@@ -23,6 +49,7 @@ export default function Notification() {
                     <input type="submit"  className='form-control btn btn-md btn-primary' />
                 </div>
             </form>
+            <h1>{noti}</h1>
         </div>
   </div>
   )

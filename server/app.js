@@ -20,16 +20,17 @@ app.use(multer().single('file'))
         console.log(`Server running in : ${PORT}`)
     })
 
-    const io = require('socket.io')(server, {
+    const io = require('./socket').init(server, {
       cors: {
         origin: 'http://localhost:3000',
         methods: ['GET', 'POST'],
       },
     });
-    
     // ...other Socket.IO server code
-  
     io.on('connection',(socket)=>{
-        console.log('Client Connected')
+      console.log("Client Connected")
+        // socket.on('noti',(data)=>{
+        //   console.log(data)
+        // })
     })
         
