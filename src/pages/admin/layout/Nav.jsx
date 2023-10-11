@@ -25,7 +25,7 @@ export default function Nav() {
           <Link to="/admin-dashboard/employee">Employee</Link>
         </li>
         <li>
-            <a href="#">About</a>
+          <Link to="/admin-dashboard/notification">Employee</Link>
         </li>
         <li>
           <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle">Pages</a>

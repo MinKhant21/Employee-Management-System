@@ -15,8 +15,21 @@ app.use(router)
 app.use(multer().single('file'))
 /**-------Server Setup--------- */
   
-
     let PORT = process.env.PORT || 2000;
     let server = app.listen(PORT, () => {
         console.log(`Server running in : ${PORT}`)
     })
+
+    const io = require('socket.io')(server, {
+      cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST'],
+      },
+    });
+    
+    // ...other Socket.IO server code
+  
+    io.on('connection',(socket)=>{
+        console.log('Client Connected')
+    })
+        

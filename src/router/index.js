@@ -6,6 +6,7 @@ import AdminHome from '../pages/admin/pages/AdminHome'
 import EmployeeManagement from '../pages/admin/pages/EmployeeManagement'
 import EmployeeDashBoard from '../pages/employee/index'
 import CreatEmployee from "../pages/admin/components/CreatEmployee";
+import Notification from "../pages/admin/pages/Notification";
 const router = createBrowserRouter([
     {
         path:'/',
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path:"create-employee",
                 element:<CreatEmployee/>
+            },
+            {
+                path:'notification',
+                element:<Notification/>
             }
         ]
     },
